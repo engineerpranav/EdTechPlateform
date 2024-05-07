@@ -1,14 +1,12 @@
 const express=require("express");
 const { connect } = require("./config/database");
-const { sendVerificationEmail } = require("./model/otp");
+const { changePassword } = require("./controller/auth");
 
 const app= new express();
+app.use(express.json());
 
-
-connect()
-
-sendVerificationEmail("rajpurohitpranav@gmail.com","232");
-
+connect();
+app.get('/',changePassword)
 app.listen(4000,()=>{
-    console.log("Server is Listening")
+    console.log("Server is Listening at locahost:4000")
 })
