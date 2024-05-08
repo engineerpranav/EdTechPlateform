@@ -1,12 +1,13 @@
 const nodemailer=require("nodemailer");
 
 const dotenv=require("dotenv");
-dotenv.config()
+
+dotenv.config();
 
 const mailSender=async(email,title,body)=>{
 
     try{
-
+        
         let transporter=nodemailer.createTransport({
             host:process.env.MAIL_HOST,
             auth:{
@@ -14,9 +15,8 @@ const mailSender=async(email,title,body)=>{
                 pass:process.env.MAIL_PASS
 
             }  
-            
         });
-
+        
         let info=transporter.sendMail({
             from:`Study Tech`,
             to:`${email}`,
@@ -34,4 +34,5 @@ const mailSender=async(email,title,body)=>{
     }
 
 }
+
 module.exports={mailSender}

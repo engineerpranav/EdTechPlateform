@@ -126,8 +126,6 @@ exports.signUp = async (req, res) => {
        
         const hashedPassword = await bcrypt.hash(password, 10);
 
-      
-
         const profileDetails = await Profile.create({
             gender:null,
             dateOfBirth: null,
@@ -142,7 +140,7 @@ exports.signUp = async (req, res) => {
             contactNumber,
             password:hashedPassword,
             accountType,
-            additionalDetails:profileDetails._id,
+            profileInformation:profileDetails._id,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstname} ${lastName}`,
         })
 
@@ -176,7 +174,7 @@ exports.login = async (req, res) => {
             });
         }
        
-        const user = await User.findOne({email}).populate("additionalDetails");
+        const user = await User.findOne({email}).populate("profileInformation");
         if(!user) {
             return res.status(401).json({
                 success:false,

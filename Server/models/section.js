@@ -7,10 +7,10 @@ const Section = new mongoose.Schema({
     type:String
   },
 
-  subSection:{
+  subSection:[{
     type:mongoose.Schema.Types.ObjectId,
     ref:"SubSection"
-  }
+  }]
 
 })
 module.exports=mongoose.model("Section",Section) 
